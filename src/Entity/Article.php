@@ -17,7 +17,7 @@ class Article
     private ?string $text = null;
 
     #[ORM\Column]
-    private ?bool $isDraft = null;
+    private ?bool $draft = null;
 
     public function getId(): ?int
     {
@@ -36,14 +36,14 @@ class Article
         return $this;
     }
 
-    public function isIsDraft(): ?bool
+    public function isDraft(): ?bool
     {
-        return $this->isDraft;
+        return $this->draft;
     }
 
-    public function setIsDraft(bool $isDraft): self
+    public function setDraft(bool $draft): self
     {
-        $this->isDraft = $isDraft;
+        $this->draft = $draft;
 
         return $this;
     }
