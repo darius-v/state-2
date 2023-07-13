@@ -1,8 +1,11 @@
-FROM nginx:1.21-alpine
-
-COPY nginx.conf  /etc/nginx/
-COPY templates /etc/nginx/templates/
-RUN echo "upstream php-upstream { server php:9000; }" > /etc/nginx/conf.d/upstream.conf
-
-EXPOSE 80
-EXPOSE 443
+FROM nginx:latest
+# Note that this `nginx-dev.conf` is also mounted within `docker-compose.yml`
+# so you don't need to build containers if you change something there, restart
+# should do the trick
+ADD nginx-dev.conf /etc/nginx/conf.d/default.conf
+ADD php-upstream.conf /etc/nginx/conf.d/upstream.conf
+# https://cloud.google.com/monitoring/agent/plugins/nginx
+RUN apt-get update && apt-get install -y curl
+RUN cd /etc/nginx/conf.d/ \
+&& curl -O https://raw.githubusercontent.com/Stackdriver/stackdriver-agent-service-configs/master/etc/nginx/conf.d/status.conf \
+&& rm -rf /var/lib/apt/lists/*
