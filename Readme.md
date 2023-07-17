@@ -45,3 +45,7 @@ I have recorded a Youtube session explaining the different parts of this project
 ## Run migrations
 
 `php bin/console doctrine:migrations:migrate`
+
+## If vendor files exist in container but not visible in host machine
+After composer install can be that case. Helped deleting vendor in host machine.
+Then vendor was deleted automatically in container. And running composer install.9
