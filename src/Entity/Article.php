@@ -21,8 +21,8 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $text = null;
 
-//    #[ORM\Column]
-//    private ?string $status = null;
+    #[ORM\Column]
+    private string $status = 'todo remove';
 
     #[ORM\Column]
     private string $currentPlace;
@@ -56,7 +56,8 @@ class Article
 //        return $this;
 //    }
 
-    // getter/setter methods must exist for property access by the marking store
+    // getter/setter methods must exist for property access by the marking store.
+    // in other words - current state or place of the graph
     public function getCurrentPlace(): string
     {
         return $this->currentPlace;
