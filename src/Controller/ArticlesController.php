@@ -44,7 +44,7 @@ class ArticlesController extends AbstractController
     {
         $article = $this->articleRepository->findOneBy(['id' => $id]);
 
-        // Update the currentState on the post
+        // Update the currentState on the post. I guess logic should be done in events - see EventSubscriber dir
         $this->blogPublishingWorkflow->apply($article, 'mark_as_reviewed');
 
         return new Response('Article now is reviewed');
