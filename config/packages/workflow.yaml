@@ -17,7 +17,7 @@ framework:
                 - !php/const App\Entity\Article::STATE_REJECTED
                 - !php/const App\Entity\Article::STATE_PUBLISHED
             transitions:
-                to_review:
+                mark_as_reviewed:
                     from: draft
                     to:   reviewed
                 publish:

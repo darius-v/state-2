@@ -36,17 +36,17 @@ class ArticlesController extends AbstractController
 
         $this->articleRepository->save($article, true);
 
-        return new Response(sprintf('Article created. <a href="/article/move-to-review/%d">To review</a>', $article->getId()));
+        return new Response(sprintf('Article created. <a href="/article/review/%d">Mark as reviewed</a>', $article->getId()));
     }
 
-    #[Route(path: '/article/move-to-review/{id}', methods: ['GET'])]
-    public function toReview(int $id): Response
+    #[Route(path: '/article/review/{id}', methods: ['GET'])]
+    public function markAsReviewed(int $id): Response
     {
         $article = $this->articleRepository->findOneBy(['id' => $id]);
 
         // Update the currentState on the post
-        $this->blogPublishingWorkflow->apply($article, 'to_review');
+        $this->blogPublishingWorkflow->apply($article, 'mark_as_reviewed');
 
-        return new Response('Article now is in review');
+        return new Response('Article now is reviewed');
     }
 }
