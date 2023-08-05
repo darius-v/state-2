@@ -1,3 +1,9 @@
+Symfony workflow demo
+============================
+
+# Purpose
+To try workflow component and make demo. No focus on other things.
+
 # This docker boilerplate is bad!
 Problems with vendor files not visible, problems with log files not visible in host when logs are written 
 and visible in container.

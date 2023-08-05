@@ -45,7 +45,7 @@ class ArticlesController extends AbstractController
     {
         $article = $this->articleRepository->findOneBy(['id' => $id]);
 
-        // Update the currentState on the post. I guess it should now change state to reviewed. But for some reason it doet not
+        // automatically changes the state of object, we just need to flush after this line.
         $this->blogPublishingWorkflow->apply($article, 'mark_as_reviewed');
 
         $this->entityManager->flush();
