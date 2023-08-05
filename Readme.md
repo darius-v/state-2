@@ -8,45 +8,27 @@ I have changed docker files myself a bit because those problems appeared right f
 
 https://github.com/ger86/symfony-docker
 
-## Description
-
-This is a complete stack for running Symfony 6.2 into Docker containers using docker-compose tool.
-
-It is composed by 4 containers:
-
-- `nginx`, acting as the webserver.
-- `php`, the PHP-FPM container with the 8.2 version of PHP.
-- `db` which is the MySQL database container with a **MySQL 8.0** image.
 
 ## Installation
 
-1. 😀 Clone this repo.
+* Clone this repo.
 
-2. If you are working with Docker Desktop for Mac, ensure **you have enabled `VirtioFS` for your sharing implementation**. `VirtioFS` brings improved I/O performance for operations on bind mounts. Enabling VirtioFS will automatically enable Virtualization framework.
+* Create the file `./.docker/.env.nginx.local` using `./.docker/.env.nginx` as template. The value of the variable `NGINX_BACKEND_DOMAIN` is the `server_name` used in NGINX.
 
-3. Create the file `./.docker/.env.nginx.local` using `./.docker/.env.nginx` as template. The value of the variable `NGINX_BACKEND_DOMAIN` is the `server_name` used in NGINX.
-
-4. Go inside folder `./docker` and run `docker compose up -d` to start containers.
-
-5. You should work inside the `php` container. This project is configured to work with [Remote Container](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) extension for Visual Studio Code, so you could run `Reopen in container` command after open the project.
-
-6. Inside the `php` container, run `composer install` to install dependencies from `/var/www/symfony` folder.
-
-7. Use the following value for the DATABASE_URL environment variable:
+* `cd ./docker` 
+* `docker compose up -d` 
+* `docker exec -it symfony_dockerized_php_1 bash`
+* `composer install`
+* Use the following value for the DATABASE_URL environment variable:
 
 ```
 DATABASE_URL=mysql://app_user:helloworld@db:3306/app_db?serverVersion=8.0.33
 ```
 
-You could change the name, user and password of the database in the `env` file at the root of the project.
+`php bin/console doctrine:migrations:migrate --no-interaction`
 
-## To learn more
 
-I have recorded a Youtube session explaining the different parts of this project. You could see it here:
-
-[Boilerplate para Symfony basado en Docker, NGINX y PHP8](https://youtu.be/A82-hry3Zvw)
-
-## Running:
+## Running if you have installed:
 
 `cd .docker`
 
@@ -65,7 +47,6 @@ Go to localhost:80
 ## Enter php container:
 `docker exec -it symfony_dockerized_php_1 bash`
 
-
 ## If vendor files exist in container but not visible in host machine
 After composer install can be that case. Helped deleting vendor in host machine.
 Then vendor was deleted automatically in container. And running composer install.9
@@ -77,12 +58,3 @@ Helps removing volumes:
 
 Then will need reinstall composer packages and run migrations.
 
-
-TODO:
-
-
-Done:
-list with states
-find why apply does not change state
-links to view
-view article (show error when state is not published)
