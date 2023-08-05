@@ -3,17 +3,26 @@
 
 {% block body %}
   <h1>Articles</h1>
+
+  <a href="{{ path('create') }}">New article</a>
+
   <table class="table">
     <tr>
-      <th>View article</th>
-      <th>State</th>
+      <th>View article
+
+      </th>
+      <th>States</th>
       <th>Mark as reviewed</th>
       <th>Publish</th>
     </tr>
     {% for article in articles %}
       <tr>
-        <td><a href="article/view/{{ article.id }}">{{ article.id }}</a> </td>
-        <td>{{ article.currentPlace|join }}</td>
+        <td>
+          <a href="article/view/{{ article.id }}">{{ article.id }}</a>
+          {# not checking the state intetionally here and showing link to all articles to demonstrate
+          view template checking if it can show #}
+        </td>
+        <td>{{ workflow_marked_places(article)|join(',') }}</td>
         <td>
           {% if (workflow_can(article, 'mark_as_reviewed')) %}
             <a href="article/review/{{ article.id }}">Mark as reviewed</a>

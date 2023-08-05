@@ -3,13 +3,14 @@
 
 {% block body %}
 
-  <a href="">List</a>
+  <a href="{{ path('articles') }}">List</a>
+  <br>
 
-  {% if ('published' not in article.currentPlace) %}
-    Article not published
+
+  {% if (workflow_has_marked_place(article, 'published')) %}
+    This is the article text: {{ article.text }}
   {% else  %}
-    <h1>Articles view</h1>
-    {{ article.text }}
+    Article not published
   {% endif %}
 
 {% endblock %}

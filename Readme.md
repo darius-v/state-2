@@ -1,4 +1,12 @@
+# This docker boilerplate is bad!
+Problems with vendor files not visible, problems with log files not visible in host when logs are written 
+and visible in container.
+If I want to delete var folder - it tells Device is busy for no reason, editor is closed.
+I have changed docker files myself a bit because those problems appeared right from the start of using.
+
 # 🐳 Docker + PHP 8.2 + MySQL + Nginx + Symfony 6.2 Boilerplate
+
+https://github.com/ger86/symfony-docker
 
 ## Description
 
@@ -62,6 +70,12 @@ Go to localhost:80
 After composer install can be that case. Helped deleting vendor in host machine.
 Then vendor was deleted automatically in container. And running composer install.9
 
+# If logs contents are not visible
+
+Helps removing volumes:
+`docker composer down -v`
+
+Then will need reinstall composer packages and run migrations.
 
 
 TODO:
