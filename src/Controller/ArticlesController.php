@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Repository\ArticleRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\DependencyInjection\Attribute\Target;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Workflow\WorkflowInterface;
@@ -13,17 +12,17 @@ use Symfony\Component\Workflow\WorkflowInterface;
 class ArticlesController extends AbstractController
 {
     public function __construct(
-//        #[Target('blog_publishing')]
-//        private WorkflowInterface $workflow,
-        private WorkflowInterface $blogPublishingWorkflow,
-        private ArticleRepository $articleRepository
+        private readonly WorkflowInterface $blogPublishingWorkflow,
+        private readonly ArticleRepository $articleRepository
     ) {
     }
 
-    #[Route(path: '/articles', name: 'articles', methods: ['GET'])]
+    #[Route(path: '/', name: 'articles', methods: ['GET'])]
     public function list(): Response
     {
-        return new Response('Welcome to Latte and Code ');
+        $articles = $this->articleRepository->findAll();
+
+        return $this->render('articles_list.html.twig', ['articles' => $articles]);
     }
 
     #[Route(path: '/articles/create', name: 'create', methods: ['GET'])]

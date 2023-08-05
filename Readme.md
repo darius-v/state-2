@@ -38,6 +38,14 @@ I have recorded a Youtube session explaining the different parts of this project
 
 [Boilerplate para Symfony basado en Docker, NGINX y PHP8](https://youtu.be/A82-hry3Zvw)
 
+## Running:
+
+`cd .docker`
+
+`docker-compose up -d`
+
+Go to localhost:80
+
 ## Making migration from entities changes
 
 `php bin/console make:migration`
@@ -46,9 +54,14 @@ I have recorded a Youtube session explaining the different parts of this project
 
 `php bin/console doctrine:migrations:migrate --no-interaction`
 
+## Enter php container:
+`docker exec -it symfony_dockerized_php_1 bash`
+
+
 ## If vendor files exist in container but not visible in host machine
 After composer install can be that case. Helped deleting vendor in host machine.
 Then vendor was deleted automatically in container. And running composer install.9
 
 TODO:
-continue what is after review phase
+list with states, links to view
+view article (show error when state is not published)
