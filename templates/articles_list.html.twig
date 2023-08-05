@@ -5,13 +5,26 @@
   <h1>Articles</h1>
   <table class="table">
     <tr>
-      <th>Id</th>
+      <th>View article</th>
       <th>State</th>
+      <th>Mark as reviewed</th>
+      <th>Publish</th>
     </tr>
     {% for article in articles %}
       <tr>
-        <td>{{ article.id }}</td>
+        <td><a href="article/view/{{ article.id }}">{{ article.id }}</a> </td>
         <td>{{ article.currentPlace|join }}</td>
+        <td>
+          {% if (workflow_can(article, 'mark_as_reviewed')) %}
+            <a href="article/review/{{ article.id }}">Mark as reviewed</a>
+          {% endif %}
+        </td>
+        <td>
+          {% if (workflow_can(article, 'publish')) %}
+            <a href="article/publish/{{ article.id }}">Publish</a>
+          {% endif %}
+
+        </td>
       </tr>
     {% endfor %}
   </table>

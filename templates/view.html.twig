@@ -1,0 +1,15 @@
+{# templates/default/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+  <a href="">List</a>
+
+  {% if ('published' not in article.currentPlace) %}
+    Article not published
+  {% else  %}
+    <h1>Articles view</h1>
+    {{ article.text }}
+  {% endif %}
+
+{% endblock %}

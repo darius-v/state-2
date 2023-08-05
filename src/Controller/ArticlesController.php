@@ -43,9 +43,27 @@ class ArticlesController extends AbstractController
     {
         $article = $this->articleRepository->findOneBy(['id' => $id]);
 
-        // Update the currentState on the post. I guess logic should be done in events - see EventSubscriber dir
+        // Update the currentState on the post. I guess it should now change state to reviewed. But for some reason it doet not
         $this->blogPublishingWorkflow->apply($article, 'mark_as_reviewed');
 
+        return $this->redirect('/');
+    }
+
+    #[Route(path: '/article/publish/{id}', methods: ['GET'])]
+    public function publish(int $id): Response
+    {
+        $article = $this->articleRepository->findOneBy(['id' => $id]);
+
+        $this->blogPublishingWorkflow->apply($article, 'publish');
+
         return new Response('Article now is reviewed');
+    }
+
+    #[Route(path: '/article/view/{id}', methods: ['GET'])]
+    public function view(int $id): Response
+    {
+        $article = $this->articleRepository->findOneBy(['id' => $id]);
+
+        return $this->render('view.html.twig', ['article' => $article]);
     }
 }

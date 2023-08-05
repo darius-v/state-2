@@ -62,6 +62,13 @@ Go to localhost:80
 After composer install can be that case. Helped deleting vendor in host machine.
 Then vendor was deleted automatically in container. And running composer install.9
 
+
+
 TODO:
-list with states, links to view
+
+find why apply does not change state
+links to view 
 view article (show error when state is not published)
+
+Done:
+list with states 

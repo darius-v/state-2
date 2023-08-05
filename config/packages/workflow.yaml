@@ -18,11 +18,11 @@ framework:
                 - !php/const App\Entity\Article::STATE_PUBLISHED
             transitions:
                 mark_as_reviewed:
-                    from: draft
-                    to:   reviewed
+                    from: !php/const App\Entity\Article::STATE_DRAFT
+                    to:   !php/const App\Entity\Article::STATE_REVIEWED
                 publish:
-                    from: reviewed
-                    to:   published
+                    from: !php/const App\Entity\Article::STATE_REVIEWED
+                    to:   !php/const App\Entity\Article::STATE_PUBLISHED
                 reject:
                     from: reviewed
-                    to:   rejected
+                    to:   !php/const App\Entity\Article::STATE_REJECTED
