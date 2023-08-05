@@ -80,9 +80,9 @@ Then will need reinstall composer packages and run migrations.
 
 TODO:
 
-find why apply does not change state
-links to view 
-view article (show error when state is not published)
 
 Done:
-list with states 
+list with states
+find why apply does not change state
+links to view
+view article (show error when state is not published)
