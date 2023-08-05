@@ -31,7 +31,7 @@ class ArticlesController extends AbstractController
     public function create(): Response
     {
         $article = new Article();
-        $article->setText(rand(1, 100));
+        $article->setText('Random number created is ' . rand(1, 100));
         // we do not set current state - it has to be null initially. Initial state is set in workflow config in initial_marking field.
         // https://stackoverflow.com/questions/54628243/symfony-4-workflow-initial-place-doesnt-work
 
