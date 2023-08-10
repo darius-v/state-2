@@ -12,6 +12,7 @@
 
       </th>
       <th>States</th>
+      <th>Reject</th>
       <th>Mark as reviewed</th>
       <th>Publish</th>
     </tr>
@@ -23,6 +24,11 @@
           view template checking if it can show #}
         </td>
         <td>{{ workflow_marked_places(article)|join(',') }}</td>
+        <td>
+          {% if (workflow_can(article, 'reject')) %}
+            <a href="article/reject/{{ article.id }}">Reject</a>
+          {% endif %}
+        </td>
         <td>
           {% if (workflow_can(article, 'mark_as_reviewed')) %}
             <a href="article/review/{{ article.id }}">Mark as reviewed</a>

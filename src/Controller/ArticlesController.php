@@ -65,6 +65,18 @@ class ArticlesController extends AbstractController
         return $this->redirectToRoute('articles');
     }
 
+    #[Route(path: '/article/reject/{id}', methods: ['GET'])]
+    public function reject(int $id): Response
+    {
+        $article = $this->articleRepository->findOneBy(['id' => $id]);
+
+        $this->blogPublishingWorkflow->apply($article, 'reject');
+
+        $this->entityManager->flush();
+
+        return $this->redirectToRoute('articles');
+    }
+
     #[Route(path: '/article/view/{id}', methods: ['GET'])]
     public function view(int $id): Response
     {
