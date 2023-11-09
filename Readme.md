@@ -64,6 +64,11 @@ Helps removing volumes:
 
 Then will need reinstall composer packages and run migrations.
 
+**Problems**
+
+If shows that workflow is not installed and does not allow to install, remove vendor folder.
+If does not allow removing vendor from container because device is busy, 
+remove it from host machine. THen install in container and it worked.
 
 ### Todo:
 
