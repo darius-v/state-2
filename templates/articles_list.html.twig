@@ -12,7 +12,7 @@
 
       </th>
       <th>States</th>
-      <th>Reject</th>
+      <th>Reject (can only reject reviewed article. Will give exception if you try to reject what you cannot</th>
       <th>Mark as reviewed</th>
       <th>Publish</th>
     </tr>
@@ -24,10 +24,12 @@
           view template checking if it can show #}
         </td>
         <td>{{ workflow_marked_places(article)|join(',') }}</td>
+
         <td>
-          {% if (workflow_can(article, 'reject')) %}
+{# intentionaly showing to all to demonstrate exception - the component makes sure you do not reject
+ which you cannot #}
             <a href="article/reject/{{ article.id }}">Reject</a>
-          {% endif %}
+
         </td>
         <td>
           {% if (workflow_can(article, 'mark_as_reviewed')) %}
