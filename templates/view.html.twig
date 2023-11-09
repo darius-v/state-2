@@ -8,6 +8,7 @@
 
 
   {% if (workflow_has_marked_place(article, 'published')) %}
+    {# does it have state 'published' #}
      {{ article.text }}
   {% else  %}
     Article not published
